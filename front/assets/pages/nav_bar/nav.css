@@ -1,0 +1,54 @@
+/* Navbar Padrão do Sistema */
+.nav-gradient {
+    background: linear-gradient(135deg, rgb(29, 69, 135) 0%, rgb(2, 33, 84) 100%) !important;
+}
+
+.navbar-brand {
+    margin-right: 10rem !important;
+}
+
+.img-logo {
+    height: 40px;
+    width: auto;
+}
+
+.nav-menu .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    padding: 0.5rem 2.5rem !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.nav-menu .nav-item:last-child .nav-link {
+    border-right: none;
+}
+
+.nav-menu .nav-link.active,
+.nav-menu .nav-link:hover {
+    color: #ffffff;
+}
+
+/* Identificador visual para a página atual */
+.nav-menu .nav-link.active {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-thickness: 3px;
+}
+
+/* Estilo para a área do usuário na navbar */
+#navbar-user-name {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    padding-right: 15px;
+}
+
+.nav-link-sair {
+    font-weight: 600;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.nav-link-sair:hover {
+    opacity: 0.8;
+}

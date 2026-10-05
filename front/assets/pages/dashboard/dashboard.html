@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROCAPE - Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../nav_bar/nav.css">
+    <link rel="shortcut icon" href="../../image/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- Placeholder da Navbar injetada via JS -->
+    <div id="nav-placeholder"></div>
+
+    <main class="container py-4">
+
+        <div class="d-flex align-items-center mb-4">
+            <h3 class="text-white fw-bold me-4 mb-0">ALERTAS</h3>
+
+            <div class="d-flex gap-3">
+                <div class="alert-pill shadow-sm">
+                    <div class="pill-number text-danger" id="qtdContratosVencer">-</div>
+                    <div class="pill-text">
+                        <span class="text-dark-blue">Contratos a vencer</span><br>
+                        <span class="text-danger small-txt">Próximo a 90 dias</span>
+                    </div>
+                </div>
+
+                <div class="alert-pill shadow-sm">
+                    <div class="pill-number text-success" id="qtdProcessosConcluidos">-</div>
+                    <div class="pill-text">
+                        <span class="text-success pt-2 d-block">Processos Concluidos</span>
+                    </div>
+                </div>
+
+                <div class="alert-pill shadow-sm">
+                    <div class="pill-number text-warning-custom" id="qtdProcessosPendentes">-</div>
+                    <div class="pill-text">
+                        <span class="text-warning-custom pt-2 d-block">Processos Pendentes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4" id="containerBannersUrgentes">
+            <!-- Banners urgentes injetados via JS dinamicamente -->
+        </div>
+
+        <div class="bg-white rounded-4 shadow-sm p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                    <h3 class="text-primary-dark fw-bold mb-0 me-3">Últimos processos</h3>
+                    <button class="btn btn-outline-secondary btn-sm rounded-pill px-3"
+                        onclick="window.location.href='../hitorico/historico.html'">VER TODOS</button>
+                </div>
+                <button id="btnCriarProcesso" class="btn btn-outline-danger rounded-pill px-4 fw-bold"
+                    onclick="window.location.href='../criar_processos/criar_processo.html'">
+                    <i class="bi bi-plus-lg"></i> Criar Processo
+                </button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-borderless align-middle custom-table text-center">
+                    <thead>
+                        <tr class="text-danger text-uppercase">
+                            <th>Nº Processo/Contrato</th>
+                            <th>Objeto</th>
+                            <th>Gestor</th>
+                            <th>Data PCA</th>
+                            <th>Situação Contrato</th>
+                            <th>Vencimento</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaProcessosBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-processo-largo">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header bg-dark-blue text-white rounded-top-4">
+                    <h5 class="modal-title fw-bold" id="viewModalLabel"><i class="bi bi-file-earmark-text me-2"></i>
+                        Detalhes do Processo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="fw-bold text-primary-dark">Contrato / Processo</label>
+                                <input type="text" class="form-control bg-light" id="modalId" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label class="fw-bold text-primary-dark">Objeto</label>
+                                <input type="text" class="form-control bg-light" id="modalObjeto" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Data</label>
+                                <input type="text" class="form-control bg-light" id="modalData" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Tipo</label>
+                                <input type="text" class="form-control bg-light" id="modalTipo" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Gestor</label>
+                                <input type="text" class="form-control bg-light" id="modalGestor" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Status</label>
+                                <input type="text" class="form-control bg-light" id="modalStatus" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary-dark">Justificativa</label>
+                            <textarea class="form-control bg-light" id="modalJustificativa" rows="3"
+                                readonly></textarea>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Código SEI</label>
+                                <input type="text" class="form-control bg-light" id="modalCodigoSei" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Nº Processo CI</label>
+                                <input type="text" class="form-control bg-light" id="modalNumeroProcessoCi" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Código DFD</label>
+                                <input type="text" class="form-control bg-light" id="modalCodigoDfd" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Código PCA</label>
+                                <input type="text" class="form-control bg-light" id="modalCodigoPca" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Ano de Execução</label>
+                                <input type="text" class="form-control bg-light" id="modalAnoExecucao" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Nº Processo PEI</label>
+                                <input type="text" class="form-control bg-light" id="modalNumeroProcessoPei" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Nº Processo</label>
+                                <input type="text" class="form-control bg-light" id="modalNumeroProcesso" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Estimativa Financeira</label>
+                                <input type="text" class="form-control bg-light" id="modalEstimativaFinanceira"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Processo Licitatório</label>
+                                <input type="text" class="form-control bg-light" id="modalProcessoLicitatorio" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Fornecedor</label>
+                                <input type="text" class="form-control bg-light" id="modalFornecedor" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Nº Contrato</label>
+                                <input type="text" class="form-control bg-light" id="modalNumeroContrato" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Situação do Contrato</label>
+                                <input type="text" class="form-control bg-light" id="modalSituacaoContrato" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Ano Início</label>
+                                <input type="text" class="form-control bg-light" id="modalAnoInicio" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold text-primary-dark">Data de Vencimento</label>
+                                <input type="text" class="form-control bg-light" id="modalDataVencimento" readonly>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary-dark">Disparo de E-mail de Aviso</label>
+                            <input type="text" class="form-control bg-light" id="modalDisparoEmailAviso" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary-dark">Códigos E-fisco</label>
+                            <div id="modalCodigosEfisco" class="form-control bg-light"
+                                style="min-height: 60px; white-space: pre-wrap; overflow-wrap: break-word;"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold text-primary-dark">Renovações</label>
+                            <div id="modalRenovacoes" class="form-control bg-light"
+                                style="min-height: 60px; white-space: pre-wrap; overflow-wrap: break-word;"></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4"
+                        data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../nav_bar/nav.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

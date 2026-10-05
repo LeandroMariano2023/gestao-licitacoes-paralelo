@@ -1,0 +1,135 @@
+/* Barra de Filtros */
+.filter-bar {
+    border: 1px solid #0b2253;
+    border-radius: 50px;
+    padding: 8px 20px;
+}
+
+.filter-input {
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-width: 130px;
+}
+
+/* Tabela Customizada */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.custom-table thead th {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.custom-table tbody tr {
+    background-color: #f8f9fa;
+}
+
+.custom-table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    color: #495057;
+    font-weight: 500;
+}
+
+.custom-table tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.custom-table tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Badges de Status */
+.badge-status {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.badge-pago {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.badge-pendente {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+
+.badge-atrasado {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* ==========================================================
+   BOTÕES DE AÇÃO DA TABELA (IMPRIMIR E EXCEL)
+========================================================== */
+.btn-action-print, 
+.btn-action-excel {
+    width: 100px;  /* Largura fixa para ficarem idênticos */
+    height: 32px;  /* Altura fixa */
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Quicksand', sans-serif;
+    transition: all 0.2s ease;
+    
+    /* Flexbox para centralizar o ícone e o texto perfeitamente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px; 
+}
+
+/* Cores do botão Imprimir */
+.btn-action-print {
+    color: #1D4587;
+    background-color: #E0EEFF;
+    border: 1px solid #c7d2fe;
+}
+
+.btn-action-print:hover {
+    background-color: #c7d2fe;
+}
+
+/* Cores do botão Excel */
+.btn-action-excel {
+    color: #198754;
+    background-color: #ffffff;
+    border: 1px solid #198754;
+}
+
+.btn-action-excel:hover {
+    background-color: #d1e7dd;
+}
+
+/* ==========================================================
+   PAGINAÇÃO
+========================================================== */
+.pagination .page-item.active .page-link {
+    background-color: #1D4587;
+    border-color: #1D4587;
+    color: white;
+}
+
+.pagination .page-link {
+    color: #1D4587;
+    font-weight: 600;
+}
+
+.pagination .page-link:hover {
+    background-color: #E0EEFF;
+    color: #1D4587;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #a0a0a0;
+}

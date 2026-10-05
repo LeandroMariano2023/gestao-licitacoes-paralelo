@@ -1,0 +1,29 @@
+/* Arquivo CSS para estilizações exclusivas da página de Histórico */
+
+/* Barra de Filtros */
+.filter-bar {
+    border: 1px solid #0b2253;
+    border-radius: 50px;
+    padding: 8px 20px;
+}
+
+.filter-input {
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-width: 120px;
+}
+/* Estilo para aumentar a largura do modal de detalhes do processo em diferentes telas */
+
+/* Para telas médias (tablets/notebooks pequenos) */
+@media (min-width: 768px) {
+    .modal-processo-largo {
+        max-width: 800px; 
+    }
+}
+
+/* Para telas grandes (mantendo o seu código original)[cite: 2] */
+@media (min-width: 992px) {
+    .modal-processo-largo {
+        max-width: 1000px; /* Largura maior que o modal-lg padrão (800px)[cite: 2] */
+    }
+}

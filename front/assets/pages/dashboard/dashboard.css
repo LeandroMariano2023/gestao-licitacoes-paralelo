@@ -1,0 +1,145 @@
+/* Fonte Base */
+body {
+    font-family: 'Quicksand', sans-serif;
+    /* background: linear-gradient(135deg, #e0f2fe 0%, #cce5ff 100%); */
+    background: url(../../image/backg.png);
+    background-size: cover;
+    background-attachment: fixed;
+    filter: brightness(0.95);
+    min-height: 100vh;
+}
+
+/* Cores Padrão */
+.bg-dark-blue {
+    background-color: #0b2253 !important;
+}
+
+.text-dark-blue {
+    color: #0b2253 !important;
+}
+
+.text-primary-dark {
+    color: #1e3a8a !important;
+}
+
+.text-warning-custom {
+    color: #d97706 !important;
+}
+
+
+/* Pílulas de Alerta (Cards Brancos) */
+.alert-pill {
+    background: #ffffff;
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pill-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.pill-text {
+    line-height: 1.2;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.small-txt {
+    font-size: 0.75rem;
+}
+
+/* Banners de Urgência */
+.banner-urgente {
+    border-radius: 12px;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-vermelho {
+    background-color: #faeaea;
+    border: 1px solid #d97c83;
+    color: #a73636;
+}
+
+.banner-amarelo {
+    background-color: #fdf3d1;
+    border: 1px solid #dcb556;
+    color: #9c7112;
+}
+
+
+/* Tabela Customizada */
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    /* Espaço entre as linhas */
+}
+
+.custom-table thead th {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.custom-table tbody tr {
+    background-color: #f8f9fa;
+    /* Fundo cinza claro nas linhas */
+}
+
+.custom-table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    color: #495057;
+    font-weight: 500;
+}
+
+.custom-table tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.custom-table tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+/* Botões de Ação na Tabela */
+.btn-action-view {
+    color: #0b2253;
+    background-color: #e0e7ff;
+    border: 1px solid #c7d2fe;
+}
+
+.btn-action-view:hover {
+    background-color: #c7d2fe;
+}
+
+.btn-action-delete {
+    color: #dc3545;
+    background-color: #ffe4e6;
+    border: 1px solid #fecdd3;
+}
+
+.btn-action-delete:hover {
+    background-color: #fecdd3;
+}
+
+/* Estilo para aumentar a largura do modal de detalhes do processo em diferentes telas */
+@media (min-width: 768px) {
+    .modal-processo-largo {
+        max-width: 800px; 
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-processo-largo {
+        max-width: 1000px;
+    }
+}

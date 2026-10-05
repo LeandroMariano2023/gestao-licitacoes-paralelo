@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROCAPE - Criar Processos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="criar_processo.css" rel="stylesheet">
+    <link rel="stylesheet" href="../nav_bar/nav.css">
+    <link rel="stylesheet" href="../dashboard/dashboard.css">
+</head>
+
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <div class="container">
+        <div class="main-card">
+
+            <div class="stepper-wrapper" id="stepper">
+                <div class="step active" data-step="1" id="tab-1" onclick="mudarPasso(1)">1. Objeto</div>
+                <div class="step" data-step="2" id="tab-2" onclick="mudarPasso(2)">2. Administrativo</div>
+                <div class="step" data-step="4" id="tab-4" onclick="mudarPasso(4)">3. E-Fisco</div>
+                <div class="step" data-step="7" id="tab-7" onclick="mudarPasso(7)">4. Dados Gerais e Contrato</div>
+            </div>
+
+            <form id="formCadastroProcesso">
+                <input type="hidden" id="processoId" name="id_processo">
+
+                <div id="step-1" class="step-pane">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome do objeto</label>
+                            <input type="text" class="form-control" name="nome_objeto" placeholder="Digite o nome"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Tipo</label>
+                            <select class="form-select" name="tipo_setor">
+                                <option value="" selected disabled>Selecione</option>
+                                <option value="aquisicao">Aquisição</option>
+                                <option value="servico">Serviço</option>
+                                <option value="obra">Obra</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <label class="form-label">Justificativa</label>
+                            <textarea class="form-control" name="justificativa" rows="3"
+                                placeholder="Justificativa para aquisição"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-2" class="step-pane d-none">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Código SEI</label>
+                            <input type="text" class="form-control" name="codigo_sei" placeholder="Digite o número SEI">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Número do processo do CI</label>
+                            <input type="text" class="form-control" name="numero_processo_ci"
+                                placeholder="Digite o número do processo do CI">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Código DFD</label>
+                            <input type="text" class="form-control" name="codigo_dfd" placeholder="Digite o código DFD">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Código PCA</label>
+                            <input type="text" class="form-control" name="codigo_pca" placeholder="Digite o código PCA">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Ano de execução</label>
+                            <input type="number" class="form-control" name="ano_execucao"
+                                placeholder="Digite o ano de execução">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Número do processo do PEI</label>
+                            <input type="text" class="form-control" name="numero_processo_pei"
+                                placeholder="Digite o número do processo do PEI">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Status PCA</label>
+                            <select class="form-select" name="status_pca">
+                                <option value="" selected disabled>Selecione</option>
+                                <option value="pendente">Pendente</option>
+                                <option value="em_analise">Em Análise</option>
+                                <option value="aprovado">Aprovado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Número do processo</label>
+                            <input type="text" class="form-control" name="numero_processo"
+                                placeholder="Digite o número do processo">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Data PCA</label>
+                            <input type="date" class="form-control" name="data_pca">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Estimativa Financeira (R$)</label>
+                            <input type="number" step="0.01" class="form-control" name="estimativa_financeira"
+                                placeholder="Ex: 50000.00">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Processo Licitatório</label>
+                            <input type="text" class="form-control" name="processo_licitatorio"
+                                placeholder="Digite o processo licitatório">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Gestor Responsável</label>
+                            <input type="text" class="form-control bg-light" name="nome_gestor"
+                                placeholder="Preenchido automaticamente..." readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-4" class="step-pane d-none">
+                    <h5 class="mb-4" style="color: #0a1f44; font-weight: bold;">Cadastro de Itens e Fornecedores</h5>
+
+                    <div class="row mb-3 align-items-end">
+                        <div class="col-md-2">
+                            <label class="form-label">Cód E-fisco</label>
+                            <input type="text" class="form-control" id="inputEfisco" placeholder="Ex: 123456">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Descrição do Item</label>
+                            <input type="text" class="form-control" id="item-efisco"
+                                placeholder="Ex: Cimento, Cadeira...">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Buscar CNPJ</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="busca-cnpj" placeholder="00.000.000/0000-00"
+                                    maxlength="18">
+                                <button class="btn btn-outline-secondary" type="button" onclick="buscarCNPJ()"
+                                    title="Buscar Fornecedor">
+                                    <i class="fa-solid fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Fornecedor Selecionado</label>
+                            <div class="d-flex">
+                                <select class="form-select me-2" id="fornecedor-efisco">
+                                    <option value="" selected disabled>Ou selecione na lista...</option>
+                                </select>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    title="Cadastrar Novo Fornecedor"
+                                    data-bs-toggle="modal" data-bs-target="#modalNovoFornecedor">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4 align-items-end">
+                        <div class="col-md-4">
+                            <label class="form-label">Número da Nota de Empenho</label>
+                            <input type="text" class="form-control" id="empenho-efisco" placeholder="Ex: 2024NE000123">
+                        </div>
+                        <div class="col-md-8 text-end">
+                            <button type="button" class="btn btn-blue" onclick="adicionarEfisco()">
+                                + Adicionar Item ao Processo
+                            </button>
+                        </div>
+                    </div>
+
+                    <ul class="list-group mb-4" id="listaEfiscos"></ul>
+
+                    <hr class="my-4">
+
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div id="aviso-efisco-nao-confirmado" class="text-danger me-3 fw-bold">
+                            <i class="fa-solid fa-triangle-exclamation"></i> E-Fisco pendente de confirmação.
+                        </div>
+                        <div id="container-btn-confirmar-efisco">
+                            <button type="button" class="btn btn-success" id="btnConfirmarEfisco"
+                                onclick="confirmarEfisco()">Confirmar Itens E-Fisco</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-7" class="step-pane d-none">
+                    <h5 class="mb-4" style="color: #0a1f44; font-weight: bold;">Dados do Contrato</h5>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">Número do Contrato</label>
+                            <input type="text" class="form-control" name="numero_contrato"
+                                placeholder="Número do contrato">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Situação do Contrato</label>
+                            <select class="form-select" name="situacao_contrato">
+                                <option value="" selected disabled>Selecione...</option>
+                                <option value="ativo">Ativo</option>
+                                <option value="suspenso">Suspenso</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label">Ano Início</label>
+                            <input type="number" class="form-control" name="ano_inicio" placeholder="Ex: 2024">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Data de Vencimento</label>
+                            <input type="date" class="form-control" name="data_vencimento">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Disparo de e-mail de aviso</label>
+                            <input type="text" class="form-control" name="disparo_email_aviso"
+                                placeholder="E-mail(s) para notificação">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+                        <h5 style="color: #0a1f44; font-weight: bold; margin: 0;">Histórico de Renovações</h5>
+                        <button type="button" class="btn btn-sm btn-outline-red" onclick="adicionarRenovacao()">+ Nova
+                            Renovação</button>
+                    </div>
+
+                    <div id="containerRenovacoes"></div>
+                </div>
+                <!-- FIM DOS PAINÉIS DO FORMULÁRIO -->
+
+                <!-- BOTÕES DE NAVEGAÇÃO E AÇÃO (DENTRO DO FORM) -->
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <!-- Botão Voltar -->
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" id="btnVoltar"
+                        onclick="passoAnterior()">VOLTAR</button>
+
+                    <!-- Grupo de Botões Direita -->
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-primary rounded-pill px-4" id="btnProximo"
+                            onclick="proximoPasso()">PRÓXIMO</button>
+
+                        <!-- Container para o botão Finalizar (controlado por JS) -->
+                        <div id="container-btn-finalizar" class="d-none" data-bs-toggle="tooltip"
+                            data-bs-placement="top" title="Confirme os itens do E-Fisco (Passo 3) para habilitar.">
+                            <button type="button" id="btnFinalizar" class="btn btn-danger rounded-pill px-5 fw-bold"
+                                disabled>CONCLUIR CADASTRO</button>
+                        </div>
+
+                        <!-- Botão Salvar Rascunho -->
+                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" id="btnRascunho">
+                            SALVAR RASCUNHO
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../nav_bar/nav.js"></script>
+    <script src="criar_processo.js"></script>
+</body>
+
+<!-- Modal para Novo Fornecedor -->
+<div class="modal fade" id="modalNovoFornecedor" tabindex="-1" aria-labelledby="modalNovoFornecedorLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNovoFornecedorLabel">Cadastrar Novo Fornecedor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNovoFornecedor">
+                    <div class="mb-3">
+                        <label for="nomeNovoFornecedor" class="form-label">Nome do Fornecedor</label>
+                        <input type="text" class="form-control" id="nomeNovoFornecedor" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cnpjNovoFornecedor" class="form-label">CNPJ</label>
+                        <input type="text" class="form-control" id="cnpjNovoFornecedor" placeholder="00.000.000/0000-00" maxlength="18">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="salvarNovoFornecedor()">Salvar Fornecedor</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
